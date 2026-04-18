@@ -19,7 +19,7 @@ returns <- na.omit(returns)
 
 dane <- dane[-1, ]
 dane$Realized_Ret <- returns
-
+dane$Abs_Ret <- abs(dane$Realized_Ret)
 ohlc <- dane %>% select(Open, High, Low, Close)
 vGKYZ <- as.numeric(volatility(ohlc, calc = "gk.yz", N = 1))
 
@@ -122,8 +122,8 @@ for (nm in names(results)) {
   dane_out <- cbind(dane_out, results[[nm]])
 }
 
-# "Date", "Realized_Ret", "SvOLHC", "SvOLHC_n10"
-base_cols <- c("Date", "Realized_Ret", "SvOLHC", "SvOLHC_n10")
+# "Date", "Abs_Ret", "Realized_Ret", "SvOLHC", "SvOLHC_n10"
+base_cols <- c("Date", "Abs_Ret", "Realized_Ret", "SvOLHC", "SvOLHC_n10")
 
 selected_cols <- c()
 
